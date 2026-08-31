@@ -2,13 +2,13 @@
 
 A fintech-style expense tracker: log spending by category, watch your salary balance drain with a liquid progress bar, get a daily safe-spend allowance, and see a "guilt-free" ratio on your passion spending.
 
-## Tech stack
+## Tech stack 👩‍💻
 
 - **Frontend:** React (plain CSS, no framework) + Chart.js + canvas-confetti
 - **Backend:** Node.js + Express + Mongoose
 - **Database:** MongoDB
 
-## Features
+## Features 🖥️
 
 - Animated splash screen with a catchy tagline, then onboarding (name + monthly salary, autofill disabled)
 - Sticky summary banner: Salary, Spent, Balance, and an animated liquid progress bar showing % of salary remaining

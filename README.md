@@ -1,4 +1,4 @@
-# Spendly
+# Spendly 💰🧠
 
 A fintech-style expense tracker: log spending by category, watch your salary balance drain with a liquid progress bar, get a daily safe-spend allowance, and see a "guilt-free" ratio on your passion spending.
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { formatINR } from '../utils/format';
 
 export default function ExpenseModal({ category, onClose, onSubmit }) {
   const [amount, setAmount] = useState('');

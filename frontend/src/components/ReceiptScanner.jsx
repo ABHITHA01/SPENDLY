@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatINR } from '../utils/format';
+import { formatINR,categoryEmoji } from '../utils/format';
 
 export default function ReceiptScanner({ onAddExpense }) {
   const [photo, setPhoto] = useState(null);
@@ -33,6 +33,7 @@ export default function ReceiptScanner({ onAddExpense }) {
 
   const analyzePhoto = async () => {
     if (!photo) {
+
       return;
     }
 
@@ -44,24 +45,20 @@ export default function ReceiptScanner({ onAddExpense }) {
       const formData = new FormData();
       formData.append('image', photo);
 
-      const response = await fetch('/api/analyze-expense', {
+      const response = await fetch('http://localhost:5000/api/analyze-expense', {
         method: 'POST',
         body: formData
       });
-
-      if (!response.ok) {
-        throw new Error('Analysis failed');
-      }
-
       const result = await response.json();
-
+      if (!response.ok) {
+        throw new Error(result.detail ||'Analysis failed');
+      }
       setAnalysis(result);
     } catch (err) {
       console.error(err);
-
-      setError(
-        "Couldn't clearly read this receipt. Please enter the expense manually."
-      );
+     setError(
+  err.message || "Couldn't clearly read this receipt. Please enter the expense manually."
+);
 
       setAnalysis(null);
     } finally {
@@ -234,14 +231,15 @@ export default function ReceiptScanner({ onAddExpense }) {
               {formatINR(analysis.amount)}
             </strong>
           </p>
+          <div className="receipt-category-tile">
+  <span className="receipt-category-emoji">
+    {categoryEmoji(analysis.category)}
+  </span>
 
-          <p>
-            Category:{' '}
-            <strong>
-              {analysis.category}
-            </strong>
-          </p>
-
+  <span className="receipt-category-name">
+    {analysis.category}
+  </span>
+</div>
           <p>
             Note:{' '}
             {analysis.note || '—'}
